@@ -103,47 +103,6 @@
   </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-  <div class="container-fluid justify-content-center">
-    <a class="navbar-brand me-5">TechFira</a>
-    
-
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav">
-
-        <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 User
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="UpdateUser.jsp">Update User</a></li>
-                  <li><a class="dropdown-item" href="DeleteUser.jsp">Delete User</a></li>
-                </ul>
-              </li>
-
-
-               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Room
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="RoomAdd.jsp">Add Room</a></li>
-                  <li><a class="dropdown-item" href="UpdateRoom.jsp">Update Room</a></li>
-                  <li><a class="dropdown-item" href="DeleteRoom.jsp">Delete Room</a></li>
-                 
-                </ul>
-              </li>
-
-              
-        
-        <li class="nav-item mx-2">
-          <a class="nav-link active" href="BookingRoom.jsp">Booking Room</a>
-        </li>
-      </ul>
-      
-    </div>
-  </div>
-</nav>
 
     <div class="two" style="width:1263px; height: 500px;">
       
@@ -167,7 +126,7 @@
 
     </div>
     
-    <!-- Bootstrap JS & Popper.js -->
+   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
 </body>

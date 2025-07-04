@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>User Management Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+
   <style>
     .navbar {
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -29,12 +29,13 @@
     }
 
     .two {
-      background-image: url('hotel1.avif'); /* Make sure this image is in your project */
+      background-image: url('RoomDB1.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
       background-attachment: fixed;
-      height: 500px;
+      min-height: 100vh;
+      padding: 60px 0;
     }
 
     .card:hover {
@@ -52,69 +53,74 @@
       text-align: center;
       color: white;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
-      margin-bottom: 30px;
+      margin-bottom: 50px;
+      font-size: 2.2rem;
     }
   </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-  <div class="container-fluid justify-content-center">
-    <a class="navbar-brand me-5" href="Home.jsp">Dashboard</a>
 
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav">
-		<h1 class="dashboard-heading">Welcome to Hotel Management System</h1>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Dashboard Section with Background Image -->
-<div class="two d-flex align-items-center">
+<!-- Main Dashboard Section -->
+<div class="two">
   <div class="container">
     
 
-    <div class="row justify-content-center g-4">
-      <!-- Card 1: Users -->
-      <div class="col-md-4" >
+    <!-- Row 1 -->
+    <div class="row justify-content-center g-4 mb-4">
+      <!-- Card 1 -->
+      <div class="col-md-5">
         <div class="card text-white bg-primary">
-          <div class="card-body">
-            <h5 class="card-title">User </h5>
-            <p class="card-text">Manage, Update or Delete users.</p>
-            <a href="UserDB.jsp" class="btn btn-light">Manage Users</a>
+          <div class="card-body text-center">
+            <h5 class="card-title">Add User</h5>
+            <p class="card-text">Add a new user to the system.</p>
+            <a href="Registration.jsp" class="btn btn-light">Click Here</a>
           </div>
         </div>
       </div>
 
-      <!-- Card 2: Rooms -->
-      <div class="col-md-4">
+      <!-- Card 2 -->
+      <div class="col-md-5">
         <div class="card text-white bg-success">
-          <div class="card-body">
-            <h5 class="card-title">Room </h5>
-            <p class="card-text">Add or edit hotel rooms.</p>
-            <a href="RoomDB.jsp" class="btn btn-light">Manage Rooms</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3: Bookings -->
-      <div class="col-md-4">
-        <div class="card text-white bg-dark">
-          <div class="card-body">
-            <h5 class="card-title">Bookings</h5>
-            <p class="card-text">View and manage bookings.</p>
-            <a href="BookingRoom.jsp" class="btn btn-light">Manage Bookings</a>
+          <div class="card-body text-center">
+            <h5 class="card-title">Update User</h5>
+            <p class="card-text">Update details of existing user.</p>
+            <a href="UpdateUser.jsp" class="btn btn-light">Click Here</a>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Row 2 -->
+    <div class="row justify-content-center g-4">
+      <!-- Card 3 -->
+      <div class="col-md-5">
+        <div class="card text-white bg-dark">
+          <div class="card-body text-center">
+            <h5 class="card-title">Delete User</h5>
+            <p class="card-text">Remove a user from the system.</p>
+            <a href="DeleteUser.jsp" class="btn btn-light">Click Here</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-5">
+        <div class="card text-white bg-danger">
+          <div class="card-body text-center">
+            <h5 class="card-title">All Users</h5>
+            <p class="card-text">View all users in the system.</p>
+            <a href="AllUser" class="btn btn-light">Click Here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

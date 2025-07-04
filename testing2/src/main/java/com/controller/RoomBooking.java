@@ -3,6 +3,7 @@ package com.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import com.model.BookingRoom;
 import com.model.Room;
@@ -43,39 +45,56 @@ public class RoomBooking extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int roomId=Integer.parseInt((request.getParameter("roomId")));
-		int userId=Integer.parseInt((request.getParameter("userId")));
-		LocalDate issueDate= LocalDate.parse(request.getParameter("issueDate"));
-		LocalDate returnDate=LocalDate.parse(request.getParameter("returnDate"));
+	
+	
+		int roomId = Integer.parseInt(request.getParameter("roomId"));
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		LocalDate issueDate = LocalDate.parse(request.getParameter("issueDate"));
+		LocalDate returnDate = LocalDate.parse(request.getParameter("returnDate"));
+
+		Transaction transaction = null;
+
+		try (Session session = hibernate.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			// 🔍 STEP 1: Check if room is already booked in given date range
+			String hql = "FROM BookingRoom b WHERE b.room.id = :roomId AND " +
+			             "((:issueDate BETWEEN b.issue_date AND b.return_date) OR " +
+			             "(:returnDate BETWEEN b.issue_date AND b.return_date) OR " +
+			             "(b.issue_date BETWEEN :issueDate AND :returnDate))";
+
+			Query<BookingRoom> query = session.createQuery(hql, BookingRoom.class);
+			query.setParameter("roomId", roomId);
+			query.setParameter("issueDate", issueDate);
+			query.setParameter("returnDate", returnDate);
+			List<BookingRoom> existingBookings = query.getResultList();
+
+			if (!existingBookings.isEmpty()) {
+				// ❌ Room is already booked in this range
+				PrintWriter out = response.getWriter();
+				out.println("<h3 style='color:red;'>Room is already booked for selected dates!</h3>");
+				return;
+			}
+
+			// ✅ Room is available → Book it
+			Room room = session.get(Room.class, roomId);
+			User user = session.get(User.class, userId);
+
+			BookingRoom br = new BookingRoom(user, room, issueDate, returnDate);
+			session.save(br);
+			transaction.commit();
+
+			PrintWriter out = response.getWriter();
+			out.println("<h3 style='color:green;'>Room Booked Successfully!</h3>");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<h3 style='color:red;'>Something went wrong while booking!</h3>");
+		}
+	}
 		
-		Transaction transaction=null;
-			    
-			    try(Session session= hibernate.getSessionFactory().openSession()) {
-			    	transaction = session.beginTransaction();
-			    	
-			    	Room room = session.get(Room.class,roomId);
-			    	User user = session.get(User.class,userId);
-			    	
-			    	BookingRoom br=new BookingRoom();
-			    	br.setUser(user);
-			    	br.setRoom(room);
-			    	br.setIssue_date(issueDate);
-			    	br.setReturn_date(returnDate);
-			    	
-			    	session.save(br);
-			    	transaction.commit();
-			    	
-			    	
-			    	PrintWriter out = response.getWriter();
-			    	out.print("Record Save Successfully");
-			    	
-			    }catch(Exception e) {
-			    	e.printStackTrace();
-			    	
-			    	PrintWriter out = response.getWriter();
-			    	out.print("Error");
-			    }
-		
+	
 	}
 
-}
+

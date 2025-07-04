@@ -29,7 +29,7 @@
 
     
     .hero-section {
-      background-image: url('hotel.webp');
+      background-image: url('RoomDB1.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -84,47 +84,6 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">TechFira</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav">
-
-        <!-- User Dropdown -->
-        <li class="nav-item dropdown mx-2">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
-            User
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="UpdateUser.jsp">Update User</a></li>
-            <li><a class="dropdown-item" href="DeleteUser.jsp">Delete User</a></li>
-          </ul>
-        </li>
-
-        <!-- Room Dropdown -->
-        <li class="nav-item dropdown mx-2">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
-            Room
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="RoomAdd.jsp">Add Room</a></li>
-            <li><a class="dropdown-item" href="UpdateRoom.jsp">Update Room</a></li>
-            <li><a class="dropdown-item" href="DeleteRoom.jsp">Delete Room</a></li>
-          </ul>
-        </li>
-
-        <!-- Booking -->
-        <li class="nav-item mx-2">
-          <a class="nav-link active" href="BookingRoom.jsp">Booking Room</a>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-</nav>
 
 <!-- 🌄 Background Hero Section with VIP Form -->
 <div class="hero-section">
